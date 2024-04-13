@@ -24,7 +24,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    // MARK: - Properties
     let Me: People = peopleList.first(where: { $0.name == "Luka Gujejiani" })!
     var sectionTitle = [String]()
     var sectionDictionary = [String : [String]]()
@@ -58,7 +58,6 @@ class ViewController: UIViewController {
         chevron.image = UIImage(systemName: "chevron.right")
         chevron.tintColor = .gray
         chevron.contentMode = .scaleAspectFit
-        
         
         profileImage.heightAnchor.constraint(equalToConstant: 5).isActive = true
         profileImage.widthAnchor.constraint(equalTo: profileImage.heightAnchor).isActive = true
@@ -96,20 +95,20 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         dataForTableView()
     }
     
+    // MARK: - UI
     func setupUI() {
         view.backgroundColor = .white
         
         view.addSubview(titleLabel)
         view.addSubview(personStackView)
         view.addSubview(tableView)
-        
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         personStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -129,7 +128,6 @@ class ViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.topAnchor.constraint(equalTo: personStackView.bottomAnchor, constant: 20),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            
         ])
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(personStackViewTapped))
@@ -144,6 +142,7 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: - TableView
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -157,7 +156,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionKey = sectionTitle[section]
         return sectionDictionary[sectionKey]?.count ?? 0
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

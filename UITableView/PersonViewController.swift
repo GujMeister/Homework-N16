@@ -2,6 +2,7 @@ import UIKit
 
 class PersonViewController: UIViewController {
     
+    // MARK: - Properties
     var selectedPerson: People?
     
     var colorView: UIView = {
@@ -50,12 +51,13 @@ class PersonViewController: UIViewController {
     }()
     
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
+    // MARK: - UI
     func setupUI() {
         view.backgroundColor = .white
         
@@ -87,6 +89,7 @@ class PersonViewController: UIViewController {
     }
 }
 
+// MARK: - TableView
 extension PersonViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,7 +100,6 @@ extension PersonViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as? InfoTableViewCell else {
             return UITableViewCell()
         }
-        
         
         switch indexPath.row {
         case 0:

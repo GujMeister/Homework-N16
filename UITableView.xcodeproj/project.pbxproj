@@ -60,6 +60,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		85842BAD2BCA2323003369D7 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				85978A4A2BC99C59007E0C85 /* SceneDelegate.swift */,
+				85978A482BC99C59007E0C85 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		85978A3C2BC99C59007E0C85 = {
 			isa = PBXGroup;
 			children = (
@@ -79,8 +88,7 @@
 		85978A472BC99C59007E0C85 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
-				85978A482BC99C59007E0C85 /* AppDelegate.swift */,
-				85978A4A2BC99C59007E0C85 /* SceneDelegate.swift */,
+				85842BAD2BCA2323003369D7 /* App */,
 				85978A4C2BC99C59007E0C85 /* ViewController.swift */,
 				85842BA62BCA04CF003369D7 /* PersonViewController.swift */,
 				85842BA82BCA04DC003369D7 /* TableViewCell */,
