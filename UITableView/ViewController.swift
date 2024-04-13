@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         let profileImage = UIImageView()
         profileImage.image = UIImage(named: Me.avatarImageName)
         profileImage.contentMode = .scaleAspectFit
-//        profileImage.layer.cornerRadius = 0
+        profileImage.layer.cornerRadius = 0
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         profileImage.layer.masksToBounds = true
         
@@ -56,6 +56,7 @@ class ViewController: UIViewController {
         
         let chevron = UIImageView()
         chevron.image = UIImage(systemName: "chevron.right")
+        chevron.tintColor = .gray
         chevron.contentMode = .scaleAspectFit
         
         
@@ -108,7 +109,7 @@ class ViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(personStackView)
         view.addSubview(tableView)
-
+        
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         personStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -131,12 +132,19 @@ class ViewController: UIViewController {
             
         ])
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(personStackViewTapped))
+        personStackView.addGestureRecognizer(tapGesture)
+    }
+    
+    //ეს ბუთონ რახან არაა მაპატიეთ objc-ს ასე ვულგარული გამოყენება
+    @objc func personStackViewTapped() {
+        let personViewController = PersonViewController()
+        personViewController.selectedPerson = Me
+        navigationController?.pushViewController(personViewController, animated: true)
     }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionTitle.count
@@ -156,7 +164,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as? ContactTableViewCell else {
             return UITableViewCell()
         }
-
+        
         let sectionKey = sectionTitle[indexPath.section]
         if let namesInSection = sectionDictionary[sectionKey] {
             let name = namesInSection[indexPath.row]
@@ -170,6 +178,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let sectionKey = sectionTitle[indexPath.section]
         if let namesInSection = sectionDictionary[sectionKey] {
             let selectedName = namesInSection[indexPath.row]
@@ -179,25 +188,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 navigationController?.pushViewController(personViewController, animated: true)
             }
         }
-    }
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
+    } 
 }
 
 #Preview() {

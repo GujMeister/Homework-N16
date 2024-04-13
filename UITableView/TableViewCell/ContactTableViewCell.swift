@@ -14,6 +14,7 @@ class ContactTableViewCell: UITableViewCell {
     private let chevronImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.right")
+        imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
